@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import Toolbar from '../navigation/toolbar/toolbar'
+import Sidedrawer from '../navigation/sideDrawer/sideDrawer'
 import classes from './layout.css'
 
-const layout = (props) => {
+
+const Layout = (props) => {
+
+    const [sidedraw, setSidedraw] = useState(false);
+
+    const handleToggleDrop = () => {
+        setSidedraw(!sidedraw);
+      };
+
     return (
         <>
-            <div>toolbar, sidedrawer, backdrop</div>
+            <Toolbar toggle={handleToggleDrop}/>
+            <Sidedrawer open={sidedraw} close={handleToggleDrop}/>
+            <div>sidedrawer, backdrop</div>
             <main className={classes.content}>
                 {props.children}
             </main>
@@ -13,4 +25,4 @@ const layout = (props) => {
     );
 }
 
-export default layout;
+export default Layout;

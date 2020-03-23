@@ -34,6 +34,10 @@ export class BurgerBuilder extends Component {
         this.setState({purchasing: false})
     }
 
+    purchasingPasshandle = () => {
+        alert('Passed !')
+    }
+
 
     render() {
 
@@ -83,7 +87,7 @@ export class BurgerBuilder extends Component {
             <>
 
                 <Modal show={this.state.purchasing} close={this.purchasingclosinghandler}>
-                    <Ordersummery ingredients={this.state.ingredients}/>
+                    <Ordersummery ingredients={this.state.ingredients} pass={this.purchasingPasshandle} close={this.purchasingclosinghandler} price={this.state.intialPrice}/>
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls Addings={addIngredientHandler} deductings={removeIngredientHandler} disabled={disabledInfo} price={this.state.intialPrice} purchasable={this.state.purchasable} purchasing={this.purchasinghandler}/>

@@ -1,0 +1,12 @@
+.btn {
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    color: #fff;
+    padding: 4px 6px;
+    display: inline-block;
+}
+
+.btn:hover {
+    border: 2px solid #fff;
+}

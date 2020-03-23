@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Ordersummery = ({ingredients}) => {
+import Button from '../../UI/button/Button'
+
+const Ordersummery = ({ingredients, pass, close, price}) => {
 
         const gredientsummery = Object.keys(ingredients).map(ingkey => {
             return (
@@ -15,6 +17,9 @@ const Ordersummery = ({ingredients}) => {
             <ul>
                 {gredientsummery}
             </ul>
+            <p>Burger Price<strong>{price.toFixed(2)}</strong></p>
+            <Button btnType="Success" clicked={pass}>Continue</Button>
+            <Button btnType="Danger" clicked={close}>Cancel</Button>
         </>
     );
 }
