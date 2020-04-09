@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {} from 'react';
 // import classes from './App.css';
 
 import Layout from './components/layout/layout'
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder'
+import Checkout from './containers/checkout/Checkout'
+import {Route, Switch} from 'react-router-dom'
 
 function App() {
 
-  const [show, setShow] = useState(true)
+  // const [show, setShow] = useState(true)
 
   // setTimeout(() => {
   //   setShow(false)
@@ -15,7 +17,10 @@ function App() {
   return (
     <div>
       <Layout>
-        {show && <BurgerBuilder />}
+        <Switch>
+          <Route path='/checkout' component={Checkout}/>
+          <Route path='/' exact component={BurgerBuilder}/>
+        </Switch>
       </Layout>
     </div>
   );
