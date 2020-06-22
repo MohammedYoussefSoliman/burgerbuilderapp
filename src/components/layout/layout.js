@@ -17,7 +17,7 @@ const Layout = (props) => {
         <>
             <Toolbar toggle={handleToggleDrop}/>
             <Sidedrawer open={sidedraw} close={handleToggleDrop}/>
-            <div>sidedrawer, backdrop</div>
+            <div>backdrop</div>
             <main className={classes.content}>
                 {props.children}
             </main>

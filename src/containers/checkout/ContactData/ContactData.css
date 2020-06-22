@@ -13,7 +13,7 @@
     margin: 10px auto;
 }
 
-.ContactData input {
+/* .ContactData input {
     display: block;
     width: 90%;
     border: 1px solid #ddd;
@@ -22,12 +22,12 @@
     margin: 10px auto;
     border-radius: 5px;
 
-}
+} */
 
-.ContactData input:focus {
+/* .ContactData input:focus {
     outline: none;
     border: 1px solid #f66;
-}
+} */
 
 @media(min-width: 600px) {
     .ContactData {

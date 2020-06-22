@@ -15,7 +15,9 @@ const BuildControls = ({Addings, deductings, disabled, price, purchasable, purch
         <div className={classes.BuildControls}>
             <p>Burger Price<strong>{price.toFixed(2)}</strong></p>
             {controls.map(ctrl => {
-                return <BuildControl ctrlType={ctrl.ing} key={ctrl.ing} add={()=>{Addings(ctrl.ing)}} deduct={()=>{deductings(ctrl.ing)}} disabled={disabled[ctrl.ing]}/>
+                return <BuildControl
+                    ctrlType={ctrl.ing}
+                    key={ctrl.ing} add={()=>{Addings(ctrl.ing)}} deduct={()=>{deductings(ctrl.ing)}} disabled={disabled[ctrl.ing]}/>
             })}
 
             <button className={classes.OrderButton} disabled={!purchasable} onClick={purchasing}>Order Now</button>

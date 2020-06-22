@@ -1,4 +1,5 @@
 .Button {
+    display: block;
     background-color: transparent;
     border: none;
     color: white;
@@ -8,6 +9,7 @@
     padding: 10px;
     margin: 10px;
     font-weight: bold;
+    text-align: center;
 }
 
 .Button:first-of-type {
@@ -21,4 +23,10 @@
 
 .Danger {
     color: #944317;
+}
+
+.Button:disabled {
+    cursor: not-allowed;
+    color: #999;
+    background: #f9f9f9;
 }
