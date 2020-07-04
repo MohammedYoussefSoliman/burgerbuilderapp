@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
-import * as actionTypes from '../../store/actions';
+import {addIngredient, removeIngredient, fetchIntialIngredients, purchasedBurger} from '../../store/actions/index';
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import Ordersummery from '../../components/Burger/ordersummery/Ordersummery'
@@ -21,10 +21,7 @@ export class BurgerBuilder extends Component {
     }
 
     componentDidMount() {
-        // axios.get('https://react-burger-28285.firebaseio.com/ingredients.json').then(ings=>{
-        //     console.log(ings)
-        //     this.setState({ingredients:ings.data})
-        // }).catch(error => {this.setState({error})})
+        this.props.onInitIngredients()
 
     }
 
@@ -48,6 +45,7 @@ export class BurgerBuilder extends Component {
         const queryString = queryParams.join('&')
         // queryString = 'price=4&becon=2&cheese=1&meat=2&salad=4'
         */
+       this.props.onInitpurchase()
         this.props.history.push({
             pathname: '/checkout'
         })
@@ -127,15 +125,18 @@ export class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients,
-        price: state.intialPrice
+        ings: state.burgerReducer.ingredients,
+        price: state.burgerReducer.intialPrice,
+        error: state.burgerReducer.error
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onIngredientAdded: (name) => dispatch({type:actionTypes.Add_ingredients, ingredientName: name}),
-        onIngredientRemoved: (name) => dispatch({type:actionTypes.Remove_ingredients, ingredientName: name})
+        onIngredientAdded: (name) => dispatch(addIngredient(name)),
+        onIngredientRemoved: (name) => dispatch(removeIngredient(name)),
+        onInitIngredients: () => dispatch(fetchIntialIngredients()),
+        onInitpurchase: () => dispatch(purchasedBurger())
     }
 }
 
