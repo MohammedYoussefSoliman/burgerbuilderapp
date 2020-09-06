@@ -2,6 +2,7 @@ import React from 'react';
 
 import classes from './Burger.css'
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient'
+
 const Burger = ({ingredients}) => {
 
     let receivedIngredients = Object.keys(ingredients).map(inKey => { // ['salad', 'cheese', 'bacon', 'meat']
@@ -16,12 +17,6 @@ const Burger = ({ingredients}) => {
         receivedIngredients = <p>Please add Ingredients</p>
     }
 
-    let testAr = [[]].reduce((acum,el)=>{
-        return acum.concat(el)
-    },)
-
-    console.log(receivedIngredients)
-    console.log(testAr)
     return (
         <>
         <div className={classes.Burger}>

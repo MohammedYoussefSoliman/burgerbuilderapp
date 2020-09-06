@@ -5,6 +5,7 @@ const intialState = {
     ingredients: null,
     intialPrice: 4,
     loading: false,
+    building: false,
     error: false
 }
 
@@ -24,7 +25,8 @@ const reducer = (state = intialState, action) => {
         const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
         const updatedState = {
             ingredients: updatedIngredients,
-            intialPrice: state.intialPrice + INGREDIENT_PRICES[action.ingredientName]
+            intialPrice: state.intialPrice + INGREDIENT_PRICES[action.ingredientName],
+            building: true
         }
             return updateObject(state, updatedState);
         case(actionTypes.Remove_ingredients):
@@ -34,13 +36,15 @@ const reducer = (state = intialState, action) => {
                     ...state.ingredients,
                     [action.ingredientName]: state.ingredients[action.ingredientName] - 1
                 },
-                intialPrice: state.intialPrice - INGREDIENT_PRICES[action.ingredientName]
+                intialPrice: state.intialPrice - INGREDIENT_PRICES[action.ingredientName],
+                building: true
             }
         case(actionTypes.Set_initialIngs):
             return {
                 ...state,
                 ingredients: action.ingredients,
                 intialPrice: 4,
+                building: false,
                 error: false
             }
         case(actionTypes.Fetch_initialIngs_failed): return updateObject(state, {error: true})

@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './BuildControls.css'
 import BuildControl from './BuildControl/BuildControl'
 
-const BuildControls = ({Addings, deductings, disabled, price, purchasable, purchasing}) => {
+const BuildControls = ({Addings, deductings, disabled, price, purchasable, purchasing, isAuth}) => {
 
     const controls = [
         {ing: 'salad'},
@@ -20,7 +20,7 @@ const BuildControls = ({Addings, deductings, disabled, price, purchasable, purch
                     key={ctrl.ing} add={()=>{Addings(ctrl.ing)}} deduct={()=>{deductings(ctrl.ing)}} disabled={disabled[ctrl.ing]}/>
             })}
 
-            <button className={classes.OrderButton} disabled={!purchasable} onClick={purchasing}>Order Now</button>
+            <button className={classes.OrderButton} disabled={!purchasable} onClick={purchasing}>{isAuth ? 'Order Now' : 'Sign in / Sign Up'}</button>
         </div>
     );
 }

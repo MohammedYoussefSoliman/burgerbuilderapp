@@ -6,7 +6,7 @@ import Backdrop from '../../UI/backdrop/backdrop'
 
 import classes from './sideDrawer.css'
 
-const Sidedrawer = ({open, close}) => {
+const Sidedrawer = ({open, close, isAuth}) => {
     let attachedClasses = [classes.Drawer, classes.Close]
     if(open) {
         attachedClasses = [classes.Drawer, classes.Open]
@@ -21,7 +21,7 @@ const Sidedrawer = ({open, close}) => {
             </div>
 
             <nav>
-            <Navitems />
+            <Navitems isAuth={isAuth}/>
             </nav>
         </div>
         </>

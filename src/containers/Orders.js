@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import {connect} from 'react-redux';
 import {fetchingOrders} from '../store/actions/index';
 import Order from '../components/Order/Order'
@@ -7,44 +7,39 @@ import classes from './Orders.css'
 import Spinner from '../components/UI/spinner/spinner'
 import withErrorHandler from '../hoc/withErrorHandler/withErrorHandler'
 
-export class Orders extends Component {
+const Orders = ({onFetchingOrders, token, userId, loading, orders}) => {
 
-    state = {
-        orders: []
-    }
+    // const [orders, setOrders] = useState([]);
 
-    componentDidMount() {
-        this.props.onFetchingOrders()
-    }
+    useEffect(()=>{
+        onFetchingOrders(token,userId)
+    },[])
 
-    
-
-    render() {
-
-        return (
-            <>
-                {this.props.loading && <Spinner />}
-                {
-                    this.props.orders.map(order => {
-                        return <Order key={order.id} price={+order.price} ings={order.ingredients} />
-                    })
-                }
-            </>
-        )
-    }
+    return (
+        <>
+            {loading && <Spinner />}
+            {
+                orders.map(order => {
+                    return <Order key={order.id} price={+order.price} ings={order.ingredients} />
+                })
+            }
+        </>
+    )
 }
 
 const mapStateToProps = state => {
     return {
         price: state.burgerReducer.intialPrice,
         orders: state.orderReducer.orders,
-        loading: state.orderReducer.loading
+        loading: state.orderReducer.loading,
+        token: state.auth.idToken,
+        userId: state.auth.userId
     }
 }
 
 const mapDispatchToProps = dispatch=> {
     return {
-        onFetchingOrders: ()=>dispatch(fetchingOrders())
+        onFetchingOrders: (token, userId)=>dispatch(fetchingOrders(token, userId))
     }
 }
 
